@@ -2,6 +2,7 @@
 import time
 from datetime import datetime, timedelta
 from sunrise_sunset_api import check_and_update_sun_times, read_sun_times_from_file
+from weather_api import is_nighttime_and_clear
 
 from cameraFunctions.end import endSequence
 from cameraFunctions.start import startSequence
@@ -18,7 +19,10 @@ def main_loop(parameters):
         print(f"Time: {now}, see you in {parameters.refresh_rate} minutes!")
         # Check if it's 1 PM today to update sunrise/sunset times
         today_check_time = get_today_check_time(hour=13, minute=0)
-        if now >= today_check_time and now < today_check_time + timedelta(minutes=parameters.refresh_rate):
+
+        time_check = today_check_time <= now < today_check_time + timedelta(minutes=parameters.refresh_rate)
+
+        if time_check:
             print("Checking and updating sunrise/sunset times...")
             check_and_update_sun_times(
                 lat=parameters.latitude,
@@ -39,15 +43,14 @@ def main_loop(parameters):
             current_time = now.time()
 
             # Check if current time matches sunrise or sunset
-            if current_time >= sunrise_datetime and current_time < (datetime.combine(now, sunrise_datetime) + timedelta(minutes=parameters.refresh_rate)).time():
+            if sunrise_datetime <= current_time < (datetime.combine(now, sunrise_datetime) + timedelta(minutes=parameters.refresh_rate)).time():
                 print("It's sunrise time!")
-                
                 endSequence(parameters.end_sequence_filepath)
                 
-            if current_time >= sunset_datetime and current_time < (datetime.combine(now, sunset_datetime) + timedelta(minutes=parameters.refresh_rate)).time():
+            if sunset_datetime <= current_time < (datetime.combine(now, sunset_datetime) + timedelta(minutes=parameters.refresh_rate)).time():
                 print("It's sunset time!")
-                
-                startSequence(parameters.start_sequence_filepath)
+                if is_nighttime_and_clear():
+                    startSequence(parameters.start_sequence_filepath)
 
         # Wait for the next refresh interval
         time.sleep(parameters.refresh_rate * 60)

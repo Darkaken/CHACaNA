@@ -1,13 +1,13 @@
 {
-    "sunrise": "07:43:18 AM",
-    "sunset": "05:43:11 PM",
-    "solar_noon": "12:43:14 PM",
-    "day_length": "09:59:53",
-    "civil_twilight_begin": "07:17:13 AM",
-    "civil_twilight_end": "06:09:15 PM",
-    "nautical_twilight_begin": "06:46:13 AM",
-    "nautical_twilight_end": "06:40:15 PM",
-    "astronomical_twilight_begin": "06:15:57 AM",
-    "astronomical_twilight_end": "07:10:31 PM",
-    "date": "2024-06-17"
+    "sunrise": "07:45:04 AM",
+    "sunset": "05:47:17 PM",
+    "solar_noon": "12:46:10 PM",
+    "day_length": "10:02:13",
+    "civil_twilight_begin": "07:19:05 AM",
+    "civil_twilight_end": "06:13:15 PM",
+    "nautical_twilight_begin": "06:48:11 AM",
+    "nautical_twilight_end": "06:44:10 PM",
+    "astronomical_twilight_begin": "06:18:00 AM",
+    "astronomical_twilight_end": "07:14:21 PM",
+    "date": "2024-07-01"
 }

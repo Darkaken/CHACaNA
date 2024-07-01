@@ -20,5 +20,6 @@ class Parameters:
 
     end_sequence_filepath = ""
     start_sequence_filepath = ""
+    camera_state_filepath = ""
 
     # ruta relativa a los bash.sh que controlan la camara
